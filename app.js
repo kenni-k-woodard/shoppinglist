@@ -1,7 +1,7 @@
 /* Imports */
 // this will check if we have a user and set signout link if it exists
 import './auth/user.js';
-import { createGroceryItem, getGroceryItems } from './fetch-utils.js';
+import { createGroceryItem, editListItem, getGroceryItems } from './fetch-utils.js';
 import { renderGroceryItem } from './render-utils.js';
 
 /* Get DOM Elements */
@@ -37,6 +37,14 @@ async function fetchAndDisplayList() {
     if (list) {
         for (let item of list) {
             const groceryItemEl = renderGroceryItem(item);
+            groceryItemEl.addEventListener('click', async () => {
+                await editListItem(item);
+                fetchAndDisplayList();
+            });
+            if (item.cross_out) {
+                groceryItemEl.classList.add('cross-out-true');
+            }
+
             listEl.append(groceryItemEl);
         }
     }

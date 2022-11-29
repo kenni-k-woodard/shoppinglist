@@ -51,3 +51,10 @@ export async function getGroceryItems() {
         return response.data;
     }
 }
+
+export async function editListItem(item) {
+    const response = await client
+        .from('groceries')
+        .update({ cross_out: !item.cross_out })
+        .match({ id: item.id });
+}
