@@ -19,12 +19,11 @@ form.addEventListener('submit', async (e) => {
     const data = new FormData(form);
     const item = data.get('item');
     const quantity = data.get('quantity');
-
+    form.reset();
     const newItem = await createGroceryItem(item, quantity);
 
     if (newItem) {
-        // display item
-        // display whole list (clear old list and fetch it again)
+        fetchAndDisplayList();
     } else {
         error.textContent = 'Something went wrong while adding item!';
     }
