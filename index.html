@@ -43,10 +43,10 @@
 
         <main>
             <div class="form-container">
-                <form id="grocery-form">
+                <form class="grocery-form">
                     <label>
                         Add Item
-                        <input id="item-input" />
+                        <input type="text" name="item" id="item-input" />
                     </label>
 
                     <label>
@@ -55,6 +55,9 @@
                     </label>
                     <button type="submit" id="submit-button">Add</button>
                 </form>
+                <p id="error"></p>
+                <h3>Don't forget to buy...</h3>
+                <ul class="list"></ul>
             </div>
         </main>
     </body>

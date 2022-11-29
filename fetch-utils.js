@@ -28,3 +28,26 @@ export async function signOutUser() {
 }
 
 /* Data functions */
+
+export async function createGroceryItem(item, quantity) {
+    const response = await client.from('groceries').insert({ item, quantity });
+
+    if (response.error) {
+        console.error(response.error.message);
+    } else {
+        return response.data;
+    }
+}
+
+export async function getGroceryItems() {
+    const response = await client
+        .from('groceries')
+        .select('*')
+        .match({ user_id: client.auth.user().id });
+
+    if (response.error) {
+        console.error(response.error.message);
+    } else {
+        return response.data;
+    }
+}
