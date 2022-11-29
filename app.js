@@ -29,6 +29,10 @@ form.addEventListener('submit', async (e) => {
     }
 });
 
+window.addEventListener('load', async () => {
+    await fetchAndDisplayList();
+});
+
 /* Display Functions */
 async function fetchAndDisplayList() {
     listEl.textContent = '';
