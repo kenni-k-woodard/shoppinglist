@@ -1,13 +1,14 @@
 /* Imports */
 // this will check if we have a user and set signout link if it exists
 import './auth/user.js';
-import { createGroceryItem, editListItem, getGroceryItems } from './fetch-utils.js';
+import { createGroceryItem, deleteList, editListItem, getGroceryItems } from './fetch-utils.js';
 import { renderGroceryItem } from './render-utils.js';
 
 /* Get DOM Elements */
 const form = document.querySelector('.grocery-form');
 const error = document.querySelector('.error');
 const listEl = document.querySelector('.list');
+const deleteBtn = document.querySelector('#delete-button');
 
 /* State */
 
@@ -30,6 +31,11 @@ form.addEventListener('submit', async (e) => {
 });
 
 window.addEventListener('load', async () => {
+    await fetchAndDisplayList();
+});
+
+deleteBtn.addEventListener('click', async () => {
+    await deleteList();
     await fetchAndDisplayList();
 });
 

@@ -58,3 +58,13 @@ export async function editListItem(item) {
         .update({ cross_out: !item.cross_out })
         .match({ id: item.id });
 }
+
+export async function deleteList() {
+    const response = await client.from('groceries').delete().match({ user_id: getUser().id });
+
+    if (response.error) {
+        console.error(response.error.message);
+    } else {
+        return response.data;
+    }
+}
